@@ -17,12 +17,13 @@ func BooksHandler() *http.Response {
 }
 
 func GetBytes(r *http.Response) map[byte]interface{} {
-	var result map[byte]interface{}
-	b, err := json.Marshal(r)
+	result := make(map[byte]interface{})
+
+	b, err := json.Marshal(result)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = json.Unmarshal(b, result)
+	err = json.Unmarshal(b, &result)
 	if err != nil {
 		log.Fatal(err)
 	}
